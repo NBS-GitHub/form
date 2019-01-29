@@ -1,8 +1,11 @@
 import React from 'react';
 
 const Panel = props => {
+    const text = 'Lorem ipsum dolor sit amet.';
     return (
-        <h3>{props.value.toUpperCase()}</h3>
+        <>
+            {props.isVisible && <p>{text}</p>}
+        </>
     );
 }
 

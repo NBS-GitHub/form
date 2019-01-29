@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
 import './App.css';
-import Form from './Form';
+import Button from './Button';
 import Panel from './Panel';
 
 class App extends Component {
   state = {
-    value: ''
+    isVisible: false
   }
 
-  handleChange = e => {
-    this.setState({
-      value: e.target.value
-    });
-  }
-
-  handleReset = () => {
-    this.setState({
-      value: ''
-    });
+  handleClick = () => {
+    this.setState(prevState => ({
+      isVisible: !prevState.isVisible
+    }));
   }
 
   render() {
     return (
       <div className="App">
-        <Form value={this.state.value} change={this.handleChange} click={this.handleReset} />
-        <Panel value={this.state.value} />
+        <Button click={this.handleClick} isVisible={this.state.isVisible} />
+        <Panel isVisible={this.state.isVisible} />
       </div>
     );
   }
