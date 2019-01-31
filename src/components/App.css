@@ -1,11 +1,11 @@
-#root {
-    display: flex;
+.wrapper, .buttonsWrapper  {
+    border: 1px solid gray;
+    margin: 2vw auto;
+    padding: 1vw;
+    width: 40%;
+    text-align: center;
+    border-radius: 1vw;
 }
-
-button, .number {
-    margin: 2vw;
-}
-
-button:disabled {
-    opacity: .3;
-}
+ button {
+     margin: 1vw;
+ }

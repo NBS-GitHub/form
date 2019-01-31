@@ -1,52 +1,31 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from './Button';
-import Number from './Number';
-import Buy from './Buy';
+import List from './List';
+import Buttons from './Buttons';
 
 class App extends Component {
   state = {
-    stock: 10,
-    order: 1
+    users: this.props.data.users
   }
 
-  handleClick = (type) => {
-    if (type === 'subtract') {
-      this.setState(prevState => ({
-        order: prevState.order - 1
-      }));
-    } else if (type === 'add') {
-      this.setState(prevState => ({
-        order: prevState.order + 1
-      }));
+
+  handleClick = e => {
+    let users = this.props.data.users;
+    if (e.target.value === 'female') {
+      users = users.filter(user => user.sex === 'female')
+    } else if (e.target.value === 'male') {
+      users = users.filter(user => user.sex === 'male')
     }
-  }
-
-  handleBuy = () => {
     this.setState(prevState => ({
-      stock: prevState.stock - prevState.order,
-      order: 0
-    }));
+      users
+    }))
   }
 
   render() {
-    const { order, stock } = this.state;
     return (
       <>
-        <Button
-          text='-'
-          order={order}
-          stock={stock}
-          click={this.handleClick.bind(this, 'subtract')}
-        />
-        <Number order={order} />
-        <Button
-          text='+'
-          order={order}
-          stock={stock}
-          click={this.handleClick.bind(this, 'add')}
-        />
-        {order > 0 && <Buy click={this.handleBuy} />}
+        <Buttons click={this.handleClick} />
+        <List users={this.state.users} />
       </>
     );
   }
