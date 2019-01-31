@@ -1,41 +1,52 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './Header';
-import Form from './Form';
-import Display from './Display';
-
+import Button from './Button';
+import Number from './Number';
+import Buy from './Buy';
 
 class App extends Component {
   state = {
-    ageEnough: false,
-    isSubmitted: false
+    stock: 10,
+    order: 1
   }
 
-  handleChange = () => {
-    this.setState(prevState => ({
-      ageEnough: !prevState.ageEnough,
-      isSubmitted: false
-    }));
+  handleClick = (type) => {
+    if (type === 'subtract') {
+      this.setState(prevState => ({
+        order: prevState.order - 1
+      }));
+    } else if (type === 'add') {
+      this.setState(prevState => ({
+        order: prevState.order + 1
+      }));
+    }
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
+  handleBuy = () => {
     this.setState(prevState => ({
-      isSubmitted: true
+      stock: prevState.stock - prevState.order,
+      order: 0
     }));
   }
 
   render() {
-    const { ageEnough, isSubmitted } = this.state;
+    const { order, stock } = this.state;
     return (
       <>
-        <Header />
-        <Form
-          change={this.handleChange}
-          submit={this.handleSubmit}
-          ageEnough={ageEnough}
+        <Button
+          text='-'
+          order={order}
+          stock={stock}
+          click={this.handleClick.bind(this, 'subtract')}
         />
-        <Display ageEnough={ageEnough} isSubmitted={isSubmitted} />
+        <Number order={order} />
+        <Button
+          text='+'
+          order={order}
+          stock={stock}
+          click={this.handleClick.bind(this, 'add')}
+        />
+        {order > 0 && <Buy click={this.handleBuy} />}
       </>
     );
   }

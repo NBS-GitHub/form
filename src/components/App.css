@@ -1,0 +1,11 @@
+#root {
+    display: flex;
+}
+
+button, .number {
+    margin: 2vw;
+}
+
+button:disabled {
+    opacity: .3;
+}
