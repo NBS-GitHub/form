@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
   margin: 0;
   padding: 0;
@@ -12,3 +13,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+=======
+* {
+    font-family: 'Sarabun', sans-serif;
+}
+>>>>>>> 40a2d56927bb2bf38d65dfd1235d6c3a31a680ea
